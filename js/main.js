@@ -1,11 +1,11 @@
 var board=new Array();
 var collisionDetection=new Array();
 var score=0;
+var htmlInitHeight=0;
 
 $(document).ready(function(){
     newGame();
     $(window).resize(function (){
-        console.log($("html").height()+"dfsdfs"+$(window).height());
         boardWidth=$(window).width();  //screen.availWidth;
         if(boardWidth>=500){
             boardWidth=500;
@@ -31,17 +31,17 @@ function newGame() {
     //随机生成数字
     createOneNumber();
     createOneNumber();
-    mobile();
+    htmlInitHeight=$("html").height();
+    mobile(htmlInitHeight);
 }
 
-function mobile() {
+function mobile(htmlInitHeight) {
     if($("html").height()>$(window).height()) {
         $("h1").hide();
         $("a").css({"margin": "10px auto"});
-        return;
-    }else if($("html").height()<$(window).height()){
+    }else  if($(window).height()>htmlInitHeight) {
         $("h1").show();
-        $("a").css({"margin":"40px auto"});
+        $("a").css({"margin": "40px auto"});
     }
 }
 
