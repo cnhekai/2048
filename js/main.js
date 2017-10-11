@@ -5,6 +5,7 @@ var score=0;
 $(document).ready(function(){
     newGame();
     $(window).resize(function (){
+        console.log($("html").height()+"dfsdfs"+$(window).height());
         boardWidth=$(window).width();  //screen.availWidth;
         if(boardWidth>=500){
             boardWidth=500;
@@ -12,6 +13,7 @@ $(document).ready(function(){
         cellWidth=0.2*boardWidth;
         cellSpace=0.04*boardWidth;
         init();
+        mobile();
         upDateBoardView();
     } );
 });
@@ -29,7 +31,18 @@ function newGame() {
     //随机生成数字
     createOneNumber();
     createOneNumber();
+    mobile();
+}
 
+function mobile() {
+    if($("html").height()>$(window).height()) {
+        $("h1").hide();
+        $("a").css({"margin": "10px auto"});
+        return;
+    }else if($("html").height()<$(window).height()){
+        $("h1").show();
+        $("a").css({"margin":"40px auto"});
+    }
 }
 
 function collisionDetectionInit() {
